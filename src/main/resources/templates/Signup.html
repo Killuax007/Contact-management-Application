@@ -41,7 +41,9 @@
                         </div>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox"  th:classappend="${#fields.hasErrors('agreement') ? 'is-invalid':'is-valid'}" class="form-check-input" id="agreement" name="agreement" th:value="${user.agreement}">
+                            <input class="form-check-input"
+                                   id="agreement"
+                                   name="agreement" th:classappend="${#fields.hasErrors('agreement') ? 'is-invalid':'is-valid'}" th:field="*{agreement}" type="checkbox">
                             <label class="form-check-label" for="agreement">Accept Terms & Conditions</label>
                             <div class="invalid-feedback"  th:each=" e : ${#fields.errors('agreement')}" th:text="${e}">
                             </div>

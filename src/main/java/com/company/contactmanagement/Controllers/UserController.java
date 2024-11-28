@@ -38,7 +38,7 @@ public class UserController {
         user.setPassword("John1234");
         user.setAbout("John is going to die ");
         user.setRole("user");
-        user.setEnabled(false);
+        user.setAgreement(false);
         user.setImgUrl("www.instagram.com");
         return this.userRepo.save(user);
         }
@@ -46,16 +46,16 @@ public class UserController {
     public String formValidator(@Valid @ModelAttribute("user") User user,BindingResult result,  Model model){
 
         try {
-            if(result.hasErrors()){
+            if (result.hasErrors()) {
                 System.out.println(user.getAgreement());
-                System.out.println("error"+result.toString());
-                model.addAttribute("user",user);
+                System.out.println("error" + result.toString());
+                model.addAttribute("user", user);
                 return "signup";
             }
-//            if(!user.getAgreement()){
-//                System.out.println("Please agree to the Terms & Conditions...");
-//                throw new Exception("Please agree to the Terms & Conditions...");
-//            }
+            if (!user.getAgreement()) {
+                System.out.println("Please agree to the Terms & Conditions...");
+                throw new Exception("Please agree to the Terms & Conditions...");
+            }
 
             user.setRole("USER");
 
@@ -63,8 +63,8 @@ public class UserController {
             System.out.println(user);
 //            User data=  this.userRepo.save(user);
 //            System.out.println(data);
-            model.addAttribute("user",new User());
-            model.addAttribute("message",new Message("Registered Successfully..!!","alert-success"));
+            model.addAttribute("user", new User());
+            model.addAttribute("message", new Message("Registered Successfully..!!", "alert-success"));
             return "Signup";
 
         }

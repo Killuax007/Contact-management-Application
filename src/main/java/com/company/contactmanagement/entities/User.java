@@ -110,7 +110,7 @@ public class User {
         return agreement;
     }
 
-    public void setEnabled(Boolean agreement) {
+    public void setAgreement(Boolean agreement) {
         this.agreement = agreement;
     }
 
